@@ -5,77 +5,93 @@
 }
 
 body {
-  background: #050505;
-  color: white;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: Inter, sans-serif;
+  background: #ffffff;
+  color: #000000;
 }
 
-section {
+.section {
   padding: 120px 10%;
 }
 
-.hero {
-  min-height: 100vh;
-}
-
 .hero h1 {
-  font-size: clamp(3rem, 6vw, 6rem);
-  font-weight: 900;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.1;
 }
 
-.hero p {
-  max-width: 520px;
-  margin-top: 20px;
+h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+
+p {
+  max-width: 620px;
+  line-height: 1.7;
   opacity: 0.85;
+}
+
+.tagline {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.cta {
+  margin-top: 40px;
+}
+
+.cta a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #000;
+}
+
+.primary {
+  border-bottom: 1px solid #000;
+}
+
+.secondary {
+  opacity: 0.6;
 }
 
 .services {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-}
-
-.card {
-  background: #0e0e0e;
-  padding: 40px;
-  border-radius: 20px;
-  transition: transform 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-}
-
-.process h2 {
-  margin-bottom: 30px;
-  font-size: 2.5rem;
-}
-
-.steps {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  text-align: center;
   gap: 40px;
 }
 
-.stat h2 {
-  font-size: 4rem;
-  color: #ff003c;
+.service h3 {
+  margin-bottom: 10px;
 }
 
-.cta {
-  background: linear-gradient(135deg, #ff003c, #ff6a00);
-  text-align: center;
+.line {
+  width: 100%;
+  height: 1px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.contact a {
+  display: block;
+  margin-top: 15px;
+  color: #000;
+  text-decoration: none;
 }
 
 footer {
   padding: 40px;
   text-align: center;
+  font-size: 0.8rem;
   opacity: 0.6;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 8%;
+  }
 }
