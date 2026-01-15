@@ -11,16 +11,17 @@ class Ripple {
         this.x = x;
         this.y = y;
         this.radius = 0;
-        this.opacity = 0.5;
+        this.opacity = 0.4;
     }
     update() {
-        this.radius += 2;
-        this.opacity -= 0.01;
+        this.radius += 1.5;
+        this.opacity -= 0.008;
     }
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.strokeStyle = `rgba(0, 0, 0, ${this.opacity})`;
+        ctx.lineWidth = 1;
         ctx.stroke();
     }
 }
@@ -41,4 +42,11 @@ function animate() {
     }
     requestAnimationFrame(animate);
 }
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
 animate();
