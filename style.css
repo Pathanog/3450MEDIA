@@ -1,65 +1,52 @@
-:root {
-    --black: #000000;
-    --white: #ffffff;
-    --accent: #f4f4f4;
-    --text-main: #1d1d1f;
-    --text-sub: #6e6e73;
+/* --- PROCESS SECTION --- */
+.process-section {
+    padding: 120px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Outfit', sans-serif; background: var(--white); color: var(--text-main); overflow-x: hidden; }
-
-/* --- PREMIUM BACKGROUND ELEMENTS --- */
-.bg-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-.line { position: absolute; background: rgba(0,0,0,0.03); width: 1px; height: 100%; }
-.line-1 { left: 20%; } .line-2 { left: 50%; } .line-3 { left: 80%; }
-
-.glass-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4; background: #e0e0e0; }
-.orb-v1 { width: 40vw; height: 40vw; top: -10%; right: -10%; animation: float 15s infinite alternate; }
-.orb-v2 { width: 30vw; height: 30vw; bottom: 10%; left: -5%; animation: float 20s infinite alternate-reverse; }
-
-@keyframes float { from { transform: translate(0,0); } to { transform: translate(40px, 40px); } }
-
-/* --- NAVIGATION (LOGO FIX) --- */
-nav { position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-.nav-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; }
-
-.logo-box img { 
-    height: 28px; /* Perfect professional size */
-    width: auto; 
-    display: block;
+.process-list {
+    margin-top: 60px;
 }
 
-.nav-links { display: flex; align-items: center; gap: 2rem; }
-.nav-links a { text-decoration: none; color: var(--black); font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
-.btn-cta { border: 1.5px solid var(--black); padding: 0.6rem 1.2rem; border-radius: 2px; }
+.process-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 40px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: 0.3s;
+}
 
-/* --- HERO SECTION --- */
-.container { width: 90%; max-width: 1200px; margin: 0 auto; }
-.hero { height: 100vh; display: flex; align-items: center; padding-top: 80px; }
-.eyebrow { text-transform: uppercase; letter-spacing: 5px; font-size: 0.75rem; font-weight: 900; color: var(--text-sub); margin-bottom: 1.5rem; display: block; }
-h1 { font-size: clamp(3rem, 10vw, 6.5rem); font-weight: 900; line-height: 0.88; letter-spacing: -3px; }
-.italic { font-style: italic; font-weight: 300; }
-.subtitle { font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--text-sub); margin: 2rem 0; max-width: 550px; }
+.process-item:hover {
+    padding-left: 20px;
+}
 
-.hero-actions { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-.btn-fill { background: var(--black); color: var(--white); padding: 1.2rem 2.8rem; text-decoration: none; font-weight: 500; }
-.price-label { font-size: 0.8rem; font-weight: 600; color: #aaa; text-transform: uppercase; }
+.p-num {
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: #bbb;
+    letter-spacing: 2px;
+}
 
-/* --- SERVICE GRID --- */
-.grid-section { padding: 8rem 0; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
-.card { background: rgba(255,255,255,0.5); border: 1px solid #efefef; padding: 4rem 2rem; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-.card:hover { background: var(--black); color: var(--white); transform: translateY(-10px); }
-.num { font-weight: 900; font-size: 0.8rem; margin-bottom: 2rem; display: block; opacity: 0.3; }
+.p-content h4 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
 
-/* --- MOBILE RESPONSIVENESS --- */
+.p-content p {
+    color: var(--grey);
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Mobile Alignment Fix */
 @media (max-width: 768px) {
-    .hide-mobile { display: none; }
-    h1 { letter-spacing: -1px; }
-    .hero { text-align: center; justify-content: center; }
-    .hero-actions { justify-content: center; }
-    .subtitle { margin-left: auto; margin-right: auto; }
-    .logo-box img { height: 22px; } /* Slightly smaller for mobile */
+    .process-item {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+    }
+    .p-content p {
+        margin: 0 auto;
+    }
 }
