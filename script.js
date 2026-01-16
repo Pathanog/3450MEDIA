@@ -3,26 +3,23 @@ const ctx = canvas.getContext("2d");
 const glow = document.getElementById("cursorGlow");
 const reveals = document.querySelectorAll(".reveal");
 const navLinks = document.querySelectorAll(".nav-link");
-const sections = [...navLinks].map(link =>
-  document.querySelector(link.getAttribute("href"))
-);
+const sections = [...navLinks].map(l => document.querySelector(l.getAttribute("href")));
 
 let w = canvas.width = innerWidth;
 let h = canvas.height = innerHeight;
 let ripples = [];
 let lx = 0, ly = 0;
 
-/* RIPPLE */
 class Ripple {
   constructor(x, y) {
     this.x = x;
     this.y = y;
     this.r = 0;
-    this.a = .08;
+    this.a = 0.08;
   }
   update() {
     this.r += 1.4;
-    this.a -= .002;
+    this.a -= 0.002;
   }
   draw() {
     ctx.beginPath();
@@ -41,16 +38,15 @@ addEventListener("mousemove", e => {
 
   glow.style.left = e.clientX + "px";
   glow.style.top = e.clientY + "px";
-  glow.style.width = 240 + speed * 3 + "px";
-  glow.style.height = 240 + speed * 3 + "px";
+  glow.style.width = 220 + speed * 3 + "px";
+  glow.style.height = 220 + speed * 3 + "px";
 
   ripples.push(new Ripple(e.clientX, e.clientY));
 });
 
-/* REVEAL + NAV ACTIVE */
 function onScroll() {
   reveals.forEach(el => {
-    if (el.getBoundingClientRect().top < innerHeight * .85) {
+    if (el.getBoundingClientRect().top < innerHeight * 0.85) {
       el.classList.add("active");
     }
   });
@@ -67,7 +63,6 @@ function onScroll() {
 addEventListener("scroll", onScroll);
 onScroll();
 
-/* ANIMATE */
 function animate() {
   ctx.clearRect(0, 0, w, h);
   ripples.forEach((r, i) => {
@@ -77,21 +72,23 @@ function animate() {
   });
   requestAnimationFrame(animate);
 }
+
 animate();
 
 addEventListener("resize", () => {
   w = canvas.width = innerWidth;
   h = canvas.height = innerHeight;
 });
+
+/* COPY EMAIL */
 function copyEmail() {
   const email = "e450media@gmail.com";
+  navigator.clipboard.writeText(email);
 
-  navigator.clipboard.writeText(email).then(() => {
-    const msg = document.getElementById("copyMsg");
-    msg.classList.add("show");
+  const msg = document.getElementById("copyMsg");
+  msg.classList.add("show");
 
-    setTimeout(() => {
-      msg.classList.remove("show");
-    }, 1500);
-  });
+  setTimeout(() => {
+    msg.classList.remove("show");
+  }, 1500);
 }
