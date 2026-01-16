@@ -83,3 +83,15 @@ addEventListener("resize", () => {
   w = canvas.width = innerWidth;
   h = canvas.height = innerHeight;
 });
+function copyEmail() {
+  const email = "e450media@gmail.com";
+
+  navigator.clipboard.writeText(email).then(() => {
+    const msg = document.getElementById("copyMsg");
+    msg.classList.add("show");
+
+    setTimeout(() => {
+      msg.classList.remove("show");
+    }, 1500);
+  });
+}
