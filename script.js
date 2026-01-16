@@ -1,45 +1,48 @@
-const canvas = document.getElementById('rippleCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const canvas = document.getElementById("rippleCanvas");
+const ctx = canvas.getContext("2d");
+
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+
 let ripples = [];
 
 class Ripple {
-    constructor(x, y) {
-        this.x = x; this.y = y;
-        this.radius = 0; this.opacity = 0.4;
+    constructor(x,y){
+        this.x=x;
+        this.y=y;
+        this.r=0;
+        this.alpha=0.12;
     }
-    update() { this.radius += 2.4; this.opacity -= 0.01; }
-    draw() {
+    update(){
+        this.r+=1.8;
+        this.alpha-=0.003;
+    }
+    draw(){
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(0, 0, 0, ${this.opacity})`;
-        ctx.lineWidth = 1;
+        ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+        ctx.strokeStyle=`rgba(0,0,0,${this.alpha})`;
+        ctx.lineWidth=1;
         ctx.stroke();
     }
 }
 
-const interaction = (e) => {
-    const x = e.clientX || (e.touches && e.touches[0].clientX);
-    const y = e.clientY || (e.touches && e.touches[0].clientY);
-    if (x && y) ripples.push(new Ripple(x, y));
-};
+window.addEventListener("mousemove",e=>{
+    ripples.push(new Ripple(e.clientX,e.clientY));
+});
 
-window.addEventListener('mousemove', interaction);
-window.addEventListener('touchmove', interaction);
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ripples.forEach((r, i) => {
-        r.update(); r.draw();
-        if (r.opacity <= 0) ripples.splice(i, 1);
+function animate(){
+    ctx.clearRect(0,0,w,h);
+    ripples.forEach((r,i)=>{
+        r.update();
+        r.draw();
+        if(r.alpha<=0) ripples.splice(i,1);
     });
     requestAnimationFrame(animate);
 }
 
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+window.addEventListener("resize",()=>{
+    w=canvas.width=window.innerWidth;
+    h=canvas.height=window.innerHeight;
 });
 
 animate();
