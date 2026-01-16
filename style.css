@@ -1,63 +1,69 @@
-/* --- RESET --- */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 
-/* --- BODY --- */
 body{
   font-family:"Outfit",sans-serif;
-  background:#fff;
-  color:#000;
+  background:#ffffff;
+  color:#000000;
   overflow-x:hidden;
-  transition:.3s;
 }
-body.dark{background:#0c0c11;color:#fff}
 
-/* --- BACKGROUND --- */
+/* BACKGROUND */
 .bg{position:fixed;inset:0;z-index:-1}
+
 .gradient{
-  position:absolute;inset:-40%;
-  background:radial-gradient(circle at 20% 20%,#e6e6e6,transparent 45%),
-             radial-gradient(circle at 80% 80%,#f2f2f2,transparent 50%);
+  position:absolute;
+  inset:-40%;
+  background:
+    radial-gradient(circle at 20% 20%, #ececec, transparent 45%),
+    radial-gradient(circle at 80% 80%, #f5f5f5, transparent 50%);
   animation:float 30s infinite alternate ease-in-out;
 }
-@keyframes float{to{transform:translate(-120px,-90px)}}
+
+@keyframes float{
+  to{transform:translate(-120px,-90px)}
+}
 
 .lines{
-  position:absolute;inset:0;
-  background:repeating-linear-gradient(
-    to right,
-    rgba(0,0,0,.05) 0,
-    rgba(0,0,0,.05) 1px,
-    transparent 1px,
-    transparent 140px
-  );
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      to right,
+      rgba(0,0,0,0.04) 0,
+      rgba(0,0,0,0.04) 1px,
+      transparent 1px,
+      transparent 140px
+    );
   animation:lines 18s linear infinite;
 }
-@keyframes lines{to{background-position:200px 0}}
+
+@keyframes lines{
+  to{background-position:200px 0}
+}
 
 .cursor-glow{
   position:absolute;
-  width:240px;height:240px;
+  width:240px;
+  height:240px;
   border-radius:50%;
   background:radial-gradient(circle,rgba(0,0,0,.12),transparent 60%);
   filter:blur(40px);
   pointer-events:none;
   transform:translate(-50%,-50%);
 }
-body.dark .cursor-glow{
-  background:radial-gradient(circle,rgba(255,255,255,.12),transparent 60%);
-}
 
 canvas{position:absolute;inset:0}
 
-/* --- NAV --- */
+/* NAV */
 nav{
-  position:fixed;top:0;width:100%;
+  position:fixed;
+  top:0;
+  width:100%;
   backdrop-filter:blur(20px);
-  background:rgba(255,255,255,.85);
+  background:rgba(255,255,255,0.85);
   z-index:1000;
 }
-body.dark nav{background:rgba(12,12,17,.85)}
 
 .nav-inner{
   max-width:1200px;
@@ -67,39 +73,92 @@ body.dark nav{background:rgba(12,12,17,.85)}
   justify-content:space-between;
   align-items:center;
 }
-.logo{font-weight:900;font-size:1.2rem}
 
-.nav-links{list-style:none;display:flex;gap:1.5rem}
-.nav-link{text-decoration:none;color:inherit;opacity:.6}
-.nav-link.active{opacity:1;font-weight:600}
+.logo{
+  font-weight:900;
+  font-size:1.2rem;
+}
 
-.nav-actions{display:flex;gap:.6rem;align-items:center}
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:1.5rem;
+}
 
-/* --- BUTTONS --- */
+.nav-link{
+  text-decoration:none;
+  color:#000;
+  opacity:.6;
+}
+
+.nav-link.active{
+  opacity:1;
+  font-weight:600;
+}
+
+.nav-actions{
+  display:flex;
+  gap:.6rem;
+}
+
+/* BUTTONS */
 .btn{
-  border:1.5px solid currentColor;
+  border:1.5px solid #000;
   padding:.55rem 1.4rem;
   text-decoration:none;
-  color:inherit;
+  color:#000;
+  white-space:nowrap;
 }
+
 .outline{background:none}
 .magnetic{transition:transform .2s}
 
-/* --- SECTIONS --- */
+/* SECTIONS */
 section{
   max-width:1000px;
   margin:auto;
   padding:140px 20px;
   text-align:center;
 }
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
-.eyebrow{letter-spacing:6px;font-size:.75rem;color:#777}
-h1{font-size:clamp(2.8rem,7vw,5.8rem);font-weight:900}
-h1 span{font-style:italic;font-weight:300}
-.lead{max-width:720px;margin:2rem auto;color:#6e6e73}
 
-h2{font-size:2.2rem;margin-bottom:1rem}
-p{color:#6e6e73}
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.eyebrow{
+  letter-spacing:6px;
+  font-size:.75rem;
+  color:#666;
+}
+
+h1{
+  font-size:clamp(2.8rem,7vw,5.8rem);
+  font-weight:900;
+  line-height:.95;
+}
+
+h1 span{
+  font-style:italic;
+  font-weight:300;
+}
+
+.lead{
+  max-width:720px;
+  margin:2rem auto;
+  color:#444;
+}
+
+h2{
+  font-size:2.2rem;
+  margin-bottom:1rem;
+}
+
+p{
+  color:#555;
+}
 
 .grid{
   margin-top:3rem;
@@ -107,96 +166,61 @@ p{color:#6e6e73}
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:1.5rem;
 }
+
 .card{
   padding:2.2rem;
   border:1px solid rgba(0,0,0,.06);
 }
-.soft{background:rgba(0,0,0,.03)}
 
-.footer{padding:80px 20px}
+.soft{
+  background:rgba(0,0,0,.03);
+}
 
-/* --- SOCIALS (FIXED) --- */
+/* FOOTER */
+.footer{
+  padding:80px 20px;
+}
+
 .socials{
   display:flex;
   justify-content:center;
   gap:1.5rem;
 }
+
 .socials a{
   display:inline-flex;
   width:24px;
   height:24px;
 }
+
 .socials svg{
   width:24px;
   height:24px;
   fill:none;
-  stroke:currentColor;
+  stroke:#000;
   stroke-width:2;
   opacity:.6;
 }
-.socials a:hover svg{opacity:1}
 
-/* --- REVEAL --- */
+.socials a:hover svg{
+  opacity:1;
+}
+
+/* REVEAL */
 .reveal{
   opacity:0;
   transform:translateY(30px);
   transition:1s ease;
 }
-.reveal.active{opacity:1;transform:none}
 
-/* --- MOBILE --- */
+.reveal.active{
+  opacity:1;
+  transform:none;
+}
+
+/* MOBILE FIX */
 @media(max-width:768px){
   .nav-links{display:none}
-}
-/* =========================
-   MOBILE FIXES (CRITICAL)
-========================= */
-@media (max-width: 768px) {
-
-  /* Darken background slightly for contrast */
-  .gradient {
-    filter: brightness(0.7);
-  }
-
-  /* Improve hero text visibility */
-  h1 {
-    font-size: clamp(2.4rem, 9vw, 3.5rem);
-  }
-
-  .lead {
-    color: #ffffff;
-    opacity: 0.85;
-    font-size: 1rem;
-  }
-
-  .eyebrow {
-    color: rgba(255,255,255,0.8);
-  }
-
-  /* NAV FIX */
-  nav {
-    background: rgba(0, 0, 0, 0.65);
-  }
-
-  .nav-link {
-    color: #ffffff;
-    opacity: 1;
-    font-weight: 500;
-  }
-
-  /* Ensure nav links are visible */
-  .nav-links {
-    display: flex;
-  }
-
-  /* Buttons clearer on mobile */
-  .btn {
-    border-color: #ffffff;
-    color: #ffffff;
-  }
-
-  /* Reduce glow overpowering text */
-  .cursor-glow {
-    opacity: 0.4;
-  }
+  h1{font-size:clamp(2.2rem,9vw,3.2rem)}
+  .lead{color:#000}
 }
