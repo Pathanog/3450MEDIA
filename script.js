@@ -2,7 +2,6 @@ const canvas=document.getElementById("rippleCanvas");
 const ctx=canvas.getContext("2d");
 const glow=document.getElementById("cursorGlow");
 const reveals=document.querySelectorAll(".reveal");
-const hoverTargets=document.querySelectorAll(".hover-target");
 const navLinks=document.querySelectorAll(".nav-link");
 const sections=[...navLinks].map(l=>document.querySelector(l.getAttribute("href")));
 
@@ -10,7 +9,6 @@ let w=canvas.width=innerWidth;
 let h=canvas.height=innerHeight;
 let ripples=[];
 let lx=0,ly=0;
-let isDark=false;
 
 /* RIPPLE */
 class Ripple{
@@ -19,18 +17,15 @@ class Ripple{
   draw(){
     ctx.beginPath();
     ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    const c=isDark?"255,255,255":"0,0,0";
-    ctx.strokeStyle=`rgba(${c},${this.a})`;
+    ctx.strokeStyle=`rgba(0,0,0,${this.a})`;
     ctx.stroke();
   }
 }
 
-/* CURSOR */
 addEventListener("mousemove",e=>{
   const dx=e.clientX-lx;
   const dy=e.clientY-ly;
   const speed=Math.hypot(dx,dy);
-
   lx=e.clientX;ly=e.clientY;
 
   glow.style.left=e.clientX+"px";
@@ -38,32 +33,18 @@ addEventListener("mousemove",e=>{
   glow.style.width=240+speed*3+"px";
   glow.style.height=240+speed*3+"px";
 
-  document.querySelectorAll(".magnetic").forEach(btn=>{
-    const r=btn.getBoundingClientRect();
-    const mx=e.clientX-(r.left+r.width/2);
-    const my=e.clientY-(r.top+r.height/2);
-    btn.style.transform=`translate(${mx*.05}px,${my*.05}px)`;
-  });
-
   ripples.push(new Ripple(e.clientX,e.clientY));
 });
 
-/* HOVER BOOST */
-hoverTargets.forEach(el=>{
-  el.onmouseenter=()=>{glow.style.width="420px";glow.style.height="420px";}
-  el.onmouseleave=()=>{glow.style.width="240px";glow.style.height="240px";}
-});
-
-/* REVEAL + NAV ACTIVE */
+/* REVEAL + NAV */
 function onScroll(){
   reveals.forEach(el=>{
     if(el.getBoundingClientRect().top<innerHeight*.85)
       el.classList.add("active");
   });
-
   sections.forEach((sec,i)=>{
-    const rect=sec.getBoundingClientRect();
-    if(rect.top<200 && rect.bottom>200){
+    const r=sec.getBoundingClientRect();
+    if(r.top<200&&r.bottom>200){
       navLinks.forEach(n=>n.classList.remove("active"));
       navLinks[i].classList.add("active");
     }
@@ -72,7 +53,6 @@ function onScroll(){
 addEventListener("scroll",onScroll);
 onScroll();
 
-/* ANIMATE */
 function animate(){
   ctx.clearRect(0,0,w,h);
   ripples.forEach((r,i)=>{
@@ -83,14 +63,11 @@ function animate(){
 }
 animate();
 
-/* RESIZE */
 addEventListener("resize",()=>{
   w=canvas.width=innerWidth;
   h=canvas.height=innerHeight;
 });
 
-/* DARK MODE */
-document.getElementById("themeToggle").onclick=()=>{
+document.getElementById("themeToggle")?.addEventListener("click",()=>{
   document.body.classList.toggle("dark");
-  isDark=document.body.classList.contains("dark");
-};
+});
