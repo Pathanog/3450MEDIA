@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E450MEDIA | Digital Management Studio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E450MEDIA | Digital Management Studio</title>
 
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <!-- BACKGROUND -->
 <div class="bg">
-  <div class="gradient"></div>
+  <canvas id="waterCanvas"></canvas>
   <div class="lines"></div>
-  <div class="cursor-glow" id="cursorGlow"></div>
-  <canvas id="rippleCanvas"></canvas>
 </div>
 
 <!-- NAV -->
@@ -23,16 +21,17 @@
   <div class="nav-inner">
     <div class="logo">E450MEDIA</div>
 
-    <ul class="nav-links">
-      <li><a href="#hero" class="nav-link active">Home</a></li>
-      <li><a href="#who" class="nav-link">Who</a></li>
-      <li><a href="#what" class="nav-link">What</a></li>
-      <li><a href="#how" class="nav-link">How</a></li>
-      <li><a href="#why" class="nav-link">Why</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#who">Who</a></li>
+      <li><a href="#what">What</a></li>
+      <li><a href="#how">How</a></li>
+      <li><a href="#why">Why</a></li>
     </ul>
 
     <div class="nav-actions">
       <a href="https://wa.me/916360199676" class="btn">WhatsApp</a>
+      <button class="hamburger" id="hamburger">☰</button>
     </div>
   </div>
 </nav>
@@ -42,8 +41,8 @@
   <span class="eyebrow">Digital Management Studio</span>
   <h1>We manage.<br><span>You grow.</span></h1>
   <p class="lead">
-    We design structured digital presence systems for startups and small businesses —
-    helping brands look credible, active, and trustworthy from day one.
+    We help startups and small businesses build a calm, credible,
+    and premium digital presence that earns trust before selling.
   </p>
 </section>
 
@@ -51,64 +50,88 @@
 <section id="who" class="section reveal">
   <h2>Who We Are</h2>
   <p>
-    E450MEDIA is a digital management studio focused on clarity, consistency,
-    and long-term brand positioning — not short-term marketing noise.
+    E450MEDIA is a digital management studio built for early-stage brands that
+    want structure instead of noise. We work closely with founders to
+    simplify growth, clarify positioning, and build a strong online identity
+    without unnecessary complexity.
   </p>
+
+  <ul class="points">
+    <li>Founder-first mindset</li>
+    <li>Small, focused client base</li>
+    <li>Transparent communication</li>
+  </ul>
 </section>
 
 <!-- WHAT -->
 <section id="what" class="section soft reveal">
   <h2>What We Do</h2>
+
   <div class="grid">
-    <div class="card">Content strategy & creation</div>
+    <div class="card">Content strategy & planning</div>
     <div class="card">Social media management</div>
-    <div class="card">Brand positioning</div>
+    <div class="card">Brand positioning & messaging</div>
+    <div class="card">Visual consistency & identity</div>
+    <div class="card">Account optimization & audits</div>
   </div>
 </section>
 
 <!-- HOW -->
 <section id="how" class="section reveal">
   <h2>How We Work</h2>
+
   <div class="grid">
-    <div class="card">Audit & discovery</div>
-    <div class="card">Clear strategy</div>
-    <div class="card">Execution</div>
-    <div class="card">Ongoing management</div>
+    <div class="card">
+      <strong>1. Understand</strong><br>
+      We learn your product, audience, and goals before doing anything.
+    </div>
+
+    <div class="card">
+      <strong>2. Structure</strong><br>
+      We design a clear content and positioning system.
+    </div>
+
+    <div class="card">
+      <strong>3. Execute</strong><br>
+      We manage content, posting, and presentation consistently.
+    </div>
+
+    <div class="card">
+      <strong>4. Improve</strong><br>
+      We refine based on performance, not assumptions.
+    </div>
   </div>
 </section>
 
 <!-- WHY -->
 <section id="why" class="section soft reveal">
   <h2>Why E450MEDIA</h2>
+
   <p>
-    Founder-first approach, transparent pricing,
-    and systems built for sustainable growth.
+    We don’t chase vanity metrics or trends.
+    Our focus is long-term brand trust, clean presentation,
+    and steady growth that feels natural — not forced.
   </p>
+
+  <ul class="points">
+    <li>No fake promises</li>
+    <li>No unnecessary retainers</li>
+    <li>No overcomplicated marketing</li>
+  </ul>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer reveal">
 
-  <div class="contact-info">
+  <div class="contact">
     <span class="label">Email us</span>
     <button class="copy-email" onclick="copyEmail()">e450media@gmail.com</button>
-    <span id="copyMsg" class="copy-msg">Copied</span>
+    <span id="copyMsg">Copied</span>
   </div>
 
   <div class="socials">
-    <a href="https://instagram.com/e450media" target="_blank" aria-label="Instagram">
-      <svg viewBox="0 0 24 24">
-        <rect x="2" y="2" width="20" height="20" rx="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="1"/>
-      </svg>
-    </a>
-
-    <a href="https://x.com/e450media" target="_blank" aria-label="X">
-      <svg viewBox="0 0 24 24">
-        <path d="M4 4L20 20M20 4L4 20"/>
-      </svg>
-    </a>
+    <a href="https://instagram.com/e450media" target="_blank">Instagram</a>
+    <a href="https://x.com/e450media" target="_blank">X</a>
   </div>
 
 </footer>
