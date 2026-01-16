@@ -148,3 +148,55 @@ p{color:#6e6e73}
 @media(max-width:768px){
   .nav-links{display:none}
 }
+/* =========================
+   MOBILE FIXES (CRITICAL)
+========================= */
+@media (max-width: 768px) {
+
+  /* Darken background slightly for contrast */
+  .gradient {
+    filter: brightness(0.7);
+  }
+
+  /* Improve hero text visibility */
+  h1 {
+    font-size: clamp(2.4rem, 9vw, 3.5rem);
+  }
+
+  .lead {
+    color: #ffffff;
+    opacity: 0.85;
+    font-size: 1rem;
+  }
+
+  .eyebrow {
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* NAV FIX */
+  nav {
+    background: rgba(0, 0, 0, 0.65);
+  }
+
+  .nav-link {
+    color: #ffffff;
+    opacity: 1;
+    font-weight: 500;
+  }
+
+  /* Ensure nav links are visible */
+  .nav-links {
+    display: flex;
+  }
+
+  /* Buttons clearer on mobile */
+  .btn {
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+
+  /* Reduce glow overpowering text */
+  .cursor-glow {
+    opacity: 0.4;
+  }
+}
